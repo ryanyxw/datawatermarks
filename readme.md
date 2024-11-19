@@ -1,3 +1,5 @@
+Note that the `gpt-neox` folder in this repository is a near-identical clone of the GPT-NeoX repository by EleutherAI found here https://github.com/EleutherAI/gpt-neox. 
+
 ## Setting up the Environment
 1. Ensure that Conda is installed
 2. Run the following commands, which creates a new Conda environment and installs Pytorch and CUDA dependencies"
