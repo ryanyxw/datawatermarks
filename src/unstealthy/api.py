@@ -24,7 +24,7 @@ def api_call(inputs):
     """
 
     API_URL = "https://api-inference.huggingface.co/models/bigscience/bloom"
-    headers = {"Authorization": "Bearer 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"}
+    headers = {"Authorization": "Bearer <YOUR_HF_TOKEN>"}
 
     def query(payload):
         response = requests.post(API_URL, headers=headers, json=payload)
