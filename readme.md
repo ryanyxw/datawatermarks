@@ -1,3 +1,25 @@
+# Proving membership in LLM pretraining data via data watermarks
+
+This is an official implementation for our paper, [Proving membership in LLM pretraining data via data watermarks
+](https://arxiv.org/abs/2402.10892), ACL Findings 2024
+
+```bibtex
+@inproceedings{wei2024provingmembershipllmpretraining,
+    title = "Proving membership in {LLM} pretraining data via data watermarks",
+    author = "\text{J. Wei*}  and
+      \textbf{R. Wang*}  and
+      Jia, Robin",
+    booktitle = "Findings of the Association for Computational Linguistics ACL 2024",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand and virtual meeting",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.findings-acl.788",
+    doi = "10.18653/v1/2024.findings-acl.788",
+    pages = "13306--13320",
+}
+```
+
 Note that the `gpt-neox` folder in this repository is a near-identical clone of the GPT-NeoX repository by EleutherAI found here https://github.com/EleutherAI/gpt-neox. 
 
 ## Setting up the Environment
@@ -15,7 +37,7 @@ pip install -r requirements/requirements.txt
 pip install -r requirements/requirements-wandb.txt # optional, if logging using WandB
 
 # optional: if you want to use FlashAttention
-# for the next line, ssh into allegro-chopin or any machine with cuda version > 11.6
+# for the next line, ssh into any machine with cuda version > 11.6
 export CUDA_HOME=<path_to_your_conda>/envs/hubble # replace this with your conda environment path
 pip install -r ./requirements/requirements-flashattention.txt
 pip install triton
@@ -28,6 +50,8 @@ To watermark pre-training data, you first need a base pre-training dataset (e.g.
 ```bash
 bash perturb_data.sh
 ```
+
+To run the unicode perturbations, set `exp_name` to "unicode_properties"
 
 ## Pre-training using NeoX
 
@@ -70,3 +94,4 @@ bash convert_neox_to_hf.sh
 ```bash
 bash score_model.sh
 ```
+For Unicode experiments, change score_model.py to call `calculate_scores_unicode_properties` instead of `calculate_scores_unstealthy`. Note that in order to run hypothesis testing for unicode, you must prepare the watermarked data using unicode (by setting `exp_name` to "unicode_properties" when running `bash perturb_data.sh`) 
